@@ -17,23 +17,23 @@ st.write('''
 
 # 난수 생성 (세션 상태를 사용하여 매번 다른 숫자)
 
-if 'find' not in st.session\_state:
-st.session\_state.find = random.randint(1, 100)
+if 'find' not in st.session_state:
+  st.session_state.find = random.randint(1, 100)
 
 # 사용자 입력 받기
 
-user\_input = st.number\_input('숫자를 입력하세요 (1 \~ 100):', min\_value=1, max\_value=100, step=1)
+user_input = st.number_input('숫자를 입력하세요 (1 ~ 100):', min_value=1, max_value=100, step=1)
 
 # 버튼 추가
 
 if st.button('입력하기'):
-if user\_input == st.session\_state.find:
-st.success('🎉 정답입니다! 게임을 종료합니다.')
-\# 새로운 난수 생성 옵션
+  if user_input == st.session_state.find:
+    st.success('🎉 정답입니다! 게임을 종료합니다.')
+# 새로운 난수 생성 옵션
 if st.button('게임 다시 시작'):
-st.session\_state.find = random.randint(1, 100)
-st.experimental\_rerun()
-elif user\_input < st.session\_state.find:
-st.warning('🔺 더 큰 수를 입력해 주세요!')
-elif user\_input > st.session\_state.find:
-st.warning('🔻 더 작은 수를 입력해 주세요!')
+  st.session_state.find = random.randint(1, 100)
+  st.experimental_rerun()
+elif user_input < st.session_state.find:
+  st.warning('🔺 더 큰 수를 입력해 주세요!')
+elif user_input > st.session_state.find:
+  st.warning('🔻 더 작은 수를 입력해 주세요!')
