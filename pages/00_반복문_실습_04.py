@@ -34,6 +34,6 @@ if st.button('입력하기'):
 
 # 힌트 출력
 if st.session_state.hints:
-    st.write("##### 📝 <u>힌트 기록</u>")
+    st.write("📝 __힌트 기록__")
     for h in st.session_state.hints:
         st.write(h)
