@@ -12,30 +12,28 @@ st.write('''
 - 더 큰 수 또는 더 작은 수를 입력하라는 힌트가 제공됩니다.
 ''')
 
-# 난수 및 상태 초기화
+# 난수 및 힌트 초기화
 if 'find' not in st.session_state:
     st.session_state.find = random.randint(1, 100)
 
 if 'hints' not in st.session_state:
     st.session_state.hints = []
 
-if 'game_over' not in st.session_state:
-    st.session_state.game_over = False
-
 # 입력 처리
-if not st.session_state.game_over:
-    user_input = st.number_input('숫자를 입력하세요 (1 ~ 100):', min_value=1, max_value=100, step=1)
+user_input = st.number_input('숫자를 입력하세요 (1 ~ 100):', min_value=1, max_value=100, step=1)
 
-    if st.button('입력하기'):
-        if user_input == st.session_state.find:
-            st.success(f'🎉 정답입니다! 게임을 종료합니다. ({user_input})')
-            st.session_state.game_over = True
-        elif user_input < st.session_state.find:
-            hint = f"🔺 {user_input}보다 큰 수를 입력해 주세요!"
-            st.session_state.hints.append(hint)
-        elif user_input > st.session_state.find:
-            hint = f"🔻 {user_input}보다 작은 수를 입력해 주세요!"
-            st.session_state.hints.append(hint)
+if st.button('입력하기'):
+    if user_input == st.session_state.find:
+        st.success(f'🎉 정답입니다! ({user_input})')
+        # 정답을 맞춘 경우 난수 재설정
+        st.session_state.find = random.randint(1, 100)
+        st.session_state.hints = []  # 힌트 초기화
+    elif user_input < st.session_state.find:
+        hint = f"🔺 {user_input}보다 큰 수를 입력해 주세요!"
+        st.session_state.hints.append(hint)
+    elif user_input > st.session_state.find:
+        hint = f"🔻 {user_input}보다 작은 수를 입력해 주세요!"
+        st.session_state.hints.append(hint)
 
 # 힌트 출력
 if st.session_state.hints:
