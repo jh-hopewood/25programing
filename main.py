@@ -16,13 +16,14 @@ st.write('''
 random.seed(42)  # 재현성을 위한 시드 설정
 find = random.randint(1, 100)
 
-# 사용자 입력 (루프 바깥에서 한 번만 호출)
+# 사용자 입력 받기
 user_input = st.number_input('숫자를 입력하세요 (1 ~ 100):', min_value=1, max_value=100, step=1)
 
-# 결과 메시지
-if user_input == find:
-    st.success('🎉 정답입니다! 게임을 종료합니다.')
-elif user_input < find:
-    st.warning('🔺 더 큰 수를 입력해 주세요!')
-elif user_input > find:
-    st.warning('🔻 더 작은 수를 입력해 주세요!')
+# 버튼 추가
+if st.button('입력하기'):
+    if user_input == find:
+        st.success('🎉 정답입니다! 게임을 종료합니다.')
+    elif user_input < find:
+        st.warning('🔺 더 큰 수를 입력해 주세요!')
+    elif user_input > find:
+        st.warning('🔻 더 작은 수를 입력해 주세요!')
