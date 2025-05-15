@@ -23,8 +23,10 @@ user_input = st.number_input('숫자를 입력하세요 (1 ~ 100):', min_value=1
 if st.button('입력하기'):
     if user_input == st.session_state.find:
         st.success('🎉 정답입니다! 게임을 종료합니다.')
-        # 새로운 난수 생성
-        st.session_state.find = random.randint(1, 100)
+        # 새로운 난수 생성 옵션
+        if st.button('게임 다시 시작'):
+            st.session_state.find = random.randint(1, 100)
+            st.experimental_rerun()
     elif user_input < st.session_state.find:
         st.warning('🔺 더 큰 수를 입력해 주세요!')
     elif user_input > st.session_state.find:
