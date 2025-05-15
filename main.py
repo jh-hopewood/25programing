@@ -15,15 +15,14 @@ st.write('''
 # 난수 생성
 random.seed(42)  # 재현성을 위한 시드 설정
 find = random.randint(1, 100)
-user_input = -1  # 초기값 설정
 
-# 게임 로직
-while find != user_input:
-    user_input = st.number_input('숫자를 입력하세요 (1 ~ 100):', min_value=1, max_value=100, step=1)
-    
-    if find > user_input:
-        st.warning('🔺 더 큰 수를 입력해 주세요!')
-    elif find < user_input:
-        st.warning('🔻 더 작은 수를 입력해 주세요!')
-    else:
-        st.success('🎉 정답입니다! 게임을 종료합니다.')
+# 사용자 입력 (루프 바깥에서 한 번만 호출)
+user_input = st.number_input('숫자를 입력하세요 (1 ~ 100):', min_value=1, max_value=100, step=1)
+
+# 결과 메시지
+if user_input == find:
+    st.success('🎉 정답입니다! 게임을 종료합니다.')
+elif user_input < find:
+    st.warning('🔺 더 큰 수를 입력해 주세요!')
+elif user_input > find:
+    st.warning('🔻 더 작은 수를 입력해 주세요!')
