@@ -25,9 +25,6 @@ user_input = st.number_input('숫자를 입력하세요 (1 ~ 100):', min_value=1
 if st.button('입력하기'):
     if user_input == st.session_state.find:
         st.success(f'🎉 정답입니다! ({user_input})')
-        # 정답을 맞춘 경우 난수 재설정
-        st.session_state.find = random.randint(1, 100)
-        st.session_state.hints = []  # 힌트 초기화
     elif user_input < st.session_state.find:
         hint = f"🔺 {user_input}보다 큰 수를 입력해 주세요!"
         st.session_state.hints.append(hint)
