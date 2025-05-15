@@ -48,8 +48,8 @@ restart = st.button('게임 다시 시작')
 if restart:
     # 상태 초기화
     st.session_state.find = random.randint(1, 100)
-    st.session_state.hints = []
+    st.session_state.hints.clear()
     st.session_state.game_over = False
     
-    # Query Params 초기화
-    st.set_query_params()
+    # 페이지 새로고침
+    st.experimental_rerun()
