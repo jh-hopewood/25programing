@@ -44,8 +44,12 @@ if st.session_state.hints:
         st.write(h)
 
 # 게임 다시 시작 버튼
-if st.session_state.game_over or st.button('게임 다시 시작'):
+restart = st.button('게임 다시 시작')
+if restart:
+    # 초기화
     st.session_state.find = random.randint(1, 100)
     st.session_state.hints = []
     st.session_state.game_over = False
-    st.experimental_rerun()
+    # rerun 제거
+    st.experimental_set_query_params()  # 상태 초기화
+
