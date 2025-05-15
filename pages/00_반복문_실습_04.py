@@ -12,12 +12,13 @@ st.write('''
 - 더 큰 수 또는 더 작은 수를 입력하라는 힌트가 제공됩니다.
 ''')
 
-# 난수 생성 (세션 상태를 사용하여 매번 다른 숫자)
+# 난수 및 상태 초기화
 if 'find' not in st.session_state:
     st.session_state.find = random.randint(1, 100)
-    st.session_state.hints = []  # 힌트 누적 저장
 
-# 입력 필드 비활성화 제어
+if 'hints' not in st.session_state:
+    st.session_state.hints = []
+
 if 'game_over' not in st.session_state:
     st.session_state.game_over = False
 
