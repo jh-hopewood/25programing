@@ -1,14 +1,13 @@
 import streamlit as st
 
 def display_multiplication_table(max_num):
-    table = ""
-    for i in range(2, max_num + 1):
-        for j in range(1, 10):
-            table += f"{i} × {j} = {i * j}  \t"
-            if j % 5 == 0:
-                table += "\n"
-        table += "\n"
-    return table
+    result = []
+    for i in range(1, 10):
+        row = []
+        for j in range(2, max_num + 1):
+            row.append(f"{j} × {i} = {j * i}")
+        result.append("\t".join(row))
+    return "\n".join(result)
 
 # 웹앱 제목
 st.title("📊 형성평가2. 구구단 출력하기")
